@@ -34,9 +34,9 @@ UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
 
 
 };
-UserSchema.statics.findByEmailAndPassword = async (email, password) => {
+UserSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
     const user = await UserModel.findOne({ email });
-    if (!user) throw new Error("User Doen not exists !!!")
+    if (!user) throw new Error("User Does not exists !!!")
 
 
     //Compare Password

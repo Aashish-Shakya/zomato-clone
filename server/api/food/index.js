@@ -15,7 +15,7 @@ const Router = express.Router();
 Router.get("/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
-        const food = await FoodModel.findById(_id);
+        const food = FoodModel.findById(_id);
         return res.json({ food });
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -35,7 +35,7 @@ Router.get("/:_id", async (req, res) => {
 Router.get("/r/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
-        const foods = await FoodModel.findById({ restaurant: _id })
+        const foods = await FoodModel.find({ restaurant: _id })
         return res.json({ foods });
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -67,38 +67,5 @@ Router.get("/c/:category", async (req, res) => {
     }
 })
 
-/**
- * Route    :-  /c/category
- * Desc     :- Get all food based on particulat category
- * Params   :- category
- * Access   :- Public
- * Method   :- Get
- * 
- */
 
-Router.get("/:_id", async (req, res) => {
-    try {
-
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-
-    }
-})
-
-/**
- * Route    :-  /:_id
- * Desc     :- Get food based on id
- * Params   :- _id
- * Access   :- Public
- * Method   :- Get
- * 
- */
-
-Router.get("/:_id", async (req, res) => {
-    try {
-
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-
-    }
-})
+export default Router;

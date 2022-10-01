@@ -10,3 +10,6 @@ It is just Zomato clone with most of its functinalities.
 - Image (Storing all the images related to the project)
 - Review (Storing all the list of reviews)
 - User (User related details, username, email, password)
+
+
+Use JSDoc for Documentation of API 

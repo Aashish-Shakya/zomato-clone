@@ -4,7 +4,9 @@ var _express = _interopRequireDefault(require("express"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
-var _passport = _interopRequireWildcard(require("passport"));
+var _passport = _interopRequireDefault(require("passport"));
+
+var _expressSession = _interopRequireDefault(require("express-session"));
 
 var _route = _interopRequireDefault(require("./config/route.config"));
 
@@ -12,35 +14,49 @@ var _connection = _interopRequireDefault(require("./database/connection"));
 
 var _auth = _interopRequireDefault(require("./api/auth"));
 
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+var _food = _interopRequireDefault(require("./api/food"));
 
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var _restaurant = _interopRequireDefault(require("./api/restaurant"));
+
+var _user = _interopRequireDefault(require("./api/user"));
+
+var _menu = _interopRequireDefault(require("./api/menu"));
+
+var _order = _interopRequireDefault(require("./api/order"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//Private route authorization config
-//Database Connection
+// Private route authorization config
+// Database connection
 _dotenv.default.config();
 
-const zomato = (0, _express.default)(); //adding additional passport configuration
-
 (0, _route.default)(_passport.default);
+const zomato = (0, _express.default)(); // adding additional passport configuration
+
 zomato.use(_express.default.json());
+zomato.use((0, _expressSession.default)({
+  secret: process.env.JWTSECRET
+}));
 zomato.use(_passport.default.initialize());
-zomato.get('/', (req, res) => {
+zomato.use(_passport.default.session());
+zomato.get("/", (req, res) => {
   res.json({
-    message: "Server is running up"
+    message: "Server is running"
   });
-}); //   /auth/signup
+}); // /auth/signup
 
 zomato.use("/auth", _auth.default);
+zomato.use("/food", _food.default);
+zomato.use("/restaurant", _restaurant.default);
+zomato.use("/user", _user.default);
+zomato.use("/menu", _menu.default);
+zomato.use("/order", _order.default);
 const PORT = 4000;
 zomato.listen(PORT, () => {
   (0, _connection.default)().then(() => {
-    console.log("Server is running with DB !!!");
+    console.log("Server is running !!!");
   }).catch(error => {
     console.log("Server is running, but database connection failed...");
     console.log(error);
-  }); // console.log(process.env.MONGO_URI)
-  // console.log(`Server is running !!! on ${PORT}  `);
+  });
 });

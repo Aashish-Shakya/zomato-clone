@@ -47,6 +47,8 @@ Router.put(
             const { user } = req;
 
             const { orderDetails } = req.body;
+            console.log(user);
+
 
             const addNewOrder = await OrderModel.findOneAndUpdate(
                 {

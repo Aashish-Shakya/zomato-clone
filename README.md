@@ -13,3 +13,8 @@ It is just Zomato clone with most of its functinalities.
 
 
 Use JSDoc for Documentation of API 
+
+
+
+<!-- use clodinary instead of aws s3 for image upload -->
+<!-- digital ocean for hosting/deploy -->

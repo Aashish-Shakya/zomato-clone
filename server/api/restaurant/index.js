@@ -1,5 +1,6 @@
 import express from "express";
 import { RestaurantModel } from '../../database/allModels'
+import { validateRestaurantCity, validateSearchString } from "../../validation/restaurant.validation";
 
 const Router = express.Router();
 
@@ -29,9 +30,12 @@ Router.get("/", async (req, res) => {
     try {
         //https://localhost:4000/restaurant/?city=ncr
         const { city } = req.query;
+        // console.log(city)
+        await validateRestaurantCity(req.params);
+
         const restaurants = await RestaurantModel.find({ city });
 
-        if (restaurant.length === 0) {
+        if (restaurants.length === 0) {
             return res.json({ error: "No restaurant found in this city" })
         }
         return res.json({ restaurants });
@@ -87,6 +91,9 @@ Router.get("/search/:searchString", async (req, res) => {
     */
     try {
         const { searchString } = req.params;
+        await validateSearchString(req.params);
+
+
         const restaurants = await RestaurantModel.find({
             name: { $regex: searchString, $options: "i" },
         });

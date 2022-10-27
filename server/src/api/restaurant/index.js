@@ -31,7 +31,7 @@ Router.get("/", async (req, res) => {
         //https://localhost:4000/restaurant/?city=ncr
         const { city } = req.query;
         // console.log(city)
-        await validateRestaurantCity(req.params);
+        // await validateRestaurantCity(req.params);
 
         const restaurants = await RestaurantModel.find({ city });
 

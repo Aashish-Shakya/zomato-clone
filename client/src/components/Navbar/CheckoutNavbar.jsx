@@ -30,8 +30,8 @@ const CheckoutNavbar = () => {
                         <div className="flex items-center justify-center gap-3">
                             <div className="border border-gray-300 text-zomato-400 w-10 h-10 rounded-full overflow-hidden">
                                 <img
-                                    src="https://cdn3.vectorstock.com/i/1000x1000/00/92/teen-boy-character-avatar-vector-11360092.jpg"
-                                    alt=""
+                                    src="https://cdn2.iconfinder.com/data/icons/teen-people-face-avatar-1/500/high_105-512.png"
+                                    alt="avatar"
                                     className="w-full h-full rounded-full object-cover"
                                 />
                             </div>

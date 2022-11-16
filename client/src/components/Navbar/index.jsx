@@ -56,6 +56,7 @@ const MobileNav = ({
                 <button className="bg-zomato-400 text-white py-2 px-3 rounded-full">
                     Use App
                 </button>
+
                 {user?.fullName ? (
                     <>
                         <div
@@ -63,7 +64,7 @@ const MobileNav = ({
                             className="border border-gray-300 text-zomato-400 w-9 h-9 rounded-full"
                         >
                             <img
-                                src="/images/avatar.png"
+                                src="https://cdn2.iconfinder.com/data/icons/teen-people-face-avatar-1/500/high_105-512.png"
                                 alt="avatar"
                                 className="w-full h-full rounded-full object-cover"
                             />
@@ -166,7 +167,7 @@ const LargeNav = ({
                             className="border border-gray-300 text-zomato-400 w-9 h-9 rounded-full"
                         >
                             <img
-                                src="/images/avatar.png"
+                                src="https://cdn2.iconfinder.com/data/icons/teen-people-face-avatar-1/500/high_105-512.png"
                                 alt="avatar"
                                 className="w-full h-full rounded-full object-cover"
                             />

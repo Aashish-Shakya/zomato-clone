@@ -37,6 +37,7 @@ const Checkout = () => {
             handler: (data) => {
                 alert("Payment Successful");
                 console.log(data);
+                localStorage.removeItem("zomatoCart", window.location.reload(false))
             },
             prefill: {
                 name: user.name,
